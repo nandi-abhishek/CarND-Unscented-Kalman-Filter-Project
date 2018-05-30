@@ -149,7 +149,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
       float range_rate = meas_package.raw_measurements_[2];
       x_[0] = ro * cos(theta);
       x_[1] = ro * sin(theta);      
-      x_[2] = range_rate / cos(theta);
+      x_[2] = fabs(cos(theta)) > 0.001 ? range_rate / cos(theta) : 4;
       x_[3] = 0;
       x_[4] = 0;
       P_ << std_radr_*std_radr_, 0, 0, 0, 0,

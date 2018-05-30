@@ -118,7 +118,7 @@ The UKF accuracy with only RADAR data was:
 
 ### Your Sensor Fusion algorithm follows the general processing flow as taught in the preceding lessons.
 
-The Unscented Kalman filter implementation can be found [src/ukf.cpp](./src/ukf.cpp) and it is used to predict at [UKF::Prediction API](./src/ukf.cpp#L204) and update happens using two different APIs - one for Laser [UKF::UpdateLidar API](./src/ukf.cpp#L311) and another for Radar [UKF::UpdateRadar API](./src/ukf.cpp#L401).
+The Unscented Kalman filter implementation can be found in [src/ukf.cpp](./src/ukf.cpp) and it is used to predict at [UKF::Prediction API](./src/ukf.cpp#L204) and update happens using two different APIs - one for Laser [UKF::UpdateLidar API](./src/ukf.cpp#L311) and another for Radar [UKF::UpdateRadar API](./src/ukf.cpp#L401).
 
 ### Your Kalman Filter algorithm handles the first measurements appropriately.
 

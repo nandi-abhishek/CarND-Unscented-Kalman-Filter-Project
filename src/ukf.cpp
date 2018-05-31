@@ -149,7 +149,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
       float range_rate = meas_package.raw_measurements_[2];
       x_[0] = ro * cos(theta);
       x_[1] = ro * sin(theta);      
-      x_[2] = fabs(cos(theta)) > 0.001 ? range_rate / cos(theta) : 4;
+      x_[2] = (cos(theta)) > 0.001 ? range_rate / cos(theta) : 4;
       x_[3] = 0;
       x_[4] = 0;
       P_ << std_radr_*std_radr_, 0, 0, 0, 0,
@@ -371,6 +371,9 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
 
     // state difference
     VectorXd x_diff = Xsig_pred_.col(i) - x_;
+    // angle normalization
+    while (x_diff(3) >  M_PI) x_diff(3) -= 2.0*M_PI;
+    while (x_diff(3) < -M_PI) x_diff(3) += 2.0*M_PI;
 
     Tc = Tc + weights_(i) * x_diff * z_diff.transpose();
   }
